@@ -34,6 +34,10 @@ def main():
         dt = clock.tick(60) / 1000 # convert from milliseconds to seconds
         updatable.update(dt)
         for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    asteroid.split()
+                    shot.kill()
             if asteroid.collides_with(player):
                 sys.exit("Game over!")
         for item in drawable:
